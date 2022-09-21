@@ -1,0 +1,61 @@
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std;
+
+int
+main() 
+{
+
+  int sum, count = 0;
+  int x[100];
+
+  srand(time(0));
+
+  while (count < 1)
+  {
+
+
+    for (int h = 0; h < 16; h++)
+    {
+      x[h] = rand() % 10;
+
+    }
+
+    for (int j = 14; j >= 0; j -= 2) //loop untill every second number add in itself
+    {
+      x[j] = x[j] + x[j];
+    }
+
+    for (int p = 14; p >= 0; p -= 2) //Loop to add every double digit 
+    {
+      if (x[p] > 9)
+      {
+        int s = x[p] % 10;
+        x[p] = x[p] / 10;
+        x[p] = x[p] + s;
+      }
+    }
+
+    for (int h = 0; h < 15; h++) //loop to add all numbers
+    {
+      sum = sum + x[h];
+    }
+
+    sum = sum % 10;
+    sum = 10 - sum;
+
+    if (sum == x[15]) //checking if last digit is the number we required to make it dividable with 10
+    {
+      count++; // if that is correct then count++ and loop break.
+    }
+  }
+
+  cout << "Credit Card number is ";
+
+  for (int k = 0; k < 16; k++) //showing numbers;
+  {
+    cout << x[k];
+  }
+}
